@@ -1,11 +1,11 @@
 import {SearchItem} from "./SearchItem";
 
 export class SearchResult {
-    Result: SearchItem[]
+    Items: SearchItem[]
     Suggestion: string
 
     constructor(result: SearchItem[], suggestion: string) {
-        this.Result = result;
+        this.Items = result;
         this.Suggestion = suggestion;
     }
 }
