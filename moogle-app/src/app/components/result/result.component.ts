@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SearchResultService} from "../../services/search-result.service";
 import {SearchResult} from "../../../../../moogle-server/src/Data/SearchResult";
 
@@ -7,13 +7,12 @@ import {SearchResult} from "../../../../../moogle-server/src/Data/SearchResult";
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.css']
 })
-export class ResultComponent implements  OnInit{
+export class ResultComponent{
   result?: SearchResult;
 
   constructor(private searchResultService: SearchResultService) {}
 
-  ngOnInit(): void {
-    this.searchResultService.getResult().subscribe((result) => this.result = result);
+  changeResult(query: string){
+      this.searchResultService.getSingleResult(query).subscribe((result) => this.result = result);
   }
-
 }

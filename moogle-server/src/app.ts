@@ -1,4 +1,4 @@
-import express, {Application, Request, Response} from 'express';
+import express, {Application, NextFunction, Request, Response} from 'express';
 import {ISearchService} from "./Interfaces/ISearchService";
 import {TrieSearchService} from "./Services/Search/TrieSearchService";
 import {SearchResult} from "./Data/SearchResult";
@@ -13,7 +13,8 @@ const searchService : ISearchService = new TrieSearchService();
 searchService.loadDbCached();
 
 app.get('/search', (req: Request, res: Response) => {
-    const mySearch : SearchResult = searchService.search("fox");
+    const query = req.query.query as string;
+    const mySearch : SearchResult = searchService.search(query);
     res.json(mySearch);
 })
 

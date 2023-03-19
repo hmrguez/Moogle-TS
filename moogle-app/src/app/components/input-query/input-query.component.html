@@ -1,0 +1,7 @@
+<div class="wrapper">
+  <div class="container">
+    <input #box name="query" placeholder="Enter query" type="text">
+    <button (click)="resultComponent.changeResult(box.value)">Search</button>
+  </div>
+  <app-result #resultComponent></app-result>
+</div>

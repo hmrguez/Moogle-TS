@@ -4,17 +4,17 @@ import {HttpClientModule} from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { ButtonComponent } from './components/button/button.component';
 import { ResultComponent } from './components/result/result.component';
 import { ResultItemComponent } from './components/result-item/result-item.component';
+import { InputQueryComponent } from './components/input-query/input-query.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ButtonComponent,
     ResultComponent,
-    ResultItemComponent
+    ResultItemComponent,
+    InputQueryComponent
   ],
   imports: [
     BrowserModule,
