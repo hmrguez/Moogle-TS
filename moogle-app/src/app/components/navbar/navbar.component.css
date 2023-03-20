@@ -1,0 +1,35 @@
+nav{
+  border-bottom: 2px solid #E8E8E8;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 0;
+}
+
+.title{
+  color: #4CAF50;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+nav ul{
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li{
+  margin: 0 1rem;
+}
+
+nav a{
+  text-decoration: none;
+}
+
+nav .cta{
+  background-color: blue;
+  border-radius: 0.25rem;
+  color: white;
+  padding: .5rem 1rem;
+}
