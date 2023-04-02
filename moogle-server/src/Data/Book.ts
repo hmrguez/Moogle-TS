@@ -1,4 +1,4 @@
-import {Trie} from "../Helper/Trie";
+import {Trie} from "../Helper/TrieSearchService/Trie";
 
 export class Book {
     Name: string

@@ -1,16 +1,20 @@
 import {ISearchService} from "../../Interfaces/ISearchService";
 import {SearchResult} from "../../Data/SearchResult";
 import {Book} from "../../Data/Book";
-import {readAllFiles, readBooksFromJson, writeBooksToJson} from "../../Helper/FileManipulation";
+import {readAllFiles, readBooksFromJson, writeBooksToJson} from "../../Helper/TrieSearchService/FileManipulation";
 import path from "path";
-import {search, Trie} from "../../Helper/Trie";
-import {processText} from "../../Helper/StringManipulation";
+import {search, Trie} from "../../Helper/TrieSearchService/Trie";
+import {processText} from "../../Helper/TrieSearchService/StringManipulation";
 import {SearchItem} from "../../Data/SearchItem";
-import {tfIdfNodeTraverse} from "../../Helper/TF-IDF";
-import {jointSnippet} from "../../Helper/Snippet";
+import {tfIdfNodeTraverse} from "../../Helper/TrieSearchService/TF-IDF";
+import {jointSnippet} from "../../Helper/TrieSearchService/Snippet";
 
 export class TrieSearchService implements ISearchService{
      _dataset : Book[] = []
+
+    addDocument(docName:string, docContent:string) {
+
+    }
 
     loadDb(): void {
         let thisPath = path.join(__dirname,"..","..","Content");
@@ -34,7 +38,7 @@ export class TrieSearchService implements ISearchService{
         this._dataset = readBooksFromJson();
     }
 
-    search(query: string): SearchResult {
+    async search(query: string): Promise<SearchResult> {
         return new SearchResult(this.searchForItems(query), "lorem suggestion")
     }
 

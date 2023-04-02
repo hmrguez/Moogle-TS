@@ -1,5 +1,5 @@
 import {search, Trie} from "./Trie";
-import {Book} from "../Data/Book";
+import {Book} from "../../Data/Book";
 
 const tfIdfSingle = (book: Book, corpus: Book[], word: string, node: Trie): number => {
     let tf = node.Reps / book.WordCount;

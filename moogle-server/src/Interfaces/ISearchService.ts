@@ -1,7 +1,6 @@
 import {SearchResult} from "../Data/SearchResult";
 
 export interface ISearchService{
-    loadDb(): void;
-    loadDbCached() : void
-    search(query: string) : SearchResult
+    search(query: string, userEmail: string) : Promise<SearchResult>;
+    addDocument(docName: string, docContent: string, userEmail: string) : void;
 }

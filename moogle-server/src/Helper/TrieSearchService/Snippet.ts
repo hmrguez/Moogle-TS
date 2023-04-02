@@ -1,4 +1,4 @@
-import {Book} from "../Data/Book";
+import {Book} from "../../Data/Book";
 import {KMPSearch} from "./KMP";
 
 const snippet = (book: Book, word: string): string => {

@@ -1,6 +1,6 @@
 import {readFileSync, readdirSync, writeFile} from "fs";
 import path from "path";
-import {Book} from "../Data/Book";
+import {Book} from "../../Data/Book";
 
 export const readAllFiles = (pathToDirectory: string) : string[][] => {
     return readdirSync(pathToDirectory, {withFileTypes: true})
