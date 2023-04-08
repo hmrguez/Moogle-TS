@@ -17,7 +17,7 @@ export class MongoTrieSearchService implements ISearchService{
         this.mongoClient = client
     }
 
-    async addDocument(docName: string, docContent: string, userEmail: string): Promise<void> {
+    async addDocument(docName: string, docContent: string): Promise<void> {
         const split : string[] = processText(docContent);
         const curTrie = new Trie()
 
@@ -27,12 +27,11 @@ export class MongoTrieSearchService implements ISearchService{
         const toInsert = {
             title: docName,
             trie: curTrie,
-            userEmail: userEmail
         }
 
         try{
             await this.mongoClient.db(this.db).collection(this.collections[0]).insertOne(toInsert)
-            const docCorpus = await this.mongoClient.db(this.db).collection(this.collections[0]).find({userEmail: userEmail}).toArray();
+            const docCorpus = await this.mongoClient.db(this.db).collection(this.collections[0]).find().toArray();
 
             const corpus = []
             for (const docCorpusKey in docCorpus) {
@@ -40,7 +39,6 @@ export class MongoTrieSearchService implements ISearchService{
                     _id: docCorpus[docCorpusKey]._id,
                     title: docCorpus[docCorpusKey].title,
                     trie: docCorpus[docCorpusKey].trie,
-                    userEmail: docCorpus[docCorpusKey].userEmail,
                 }
 
                 corpus.push(tempBook)
@@ -62,10 +60,10 @@ export class MongoTrieSearchService implements ISearchService{
         }
     }
 
-    async search(query: string, userEmail: string): Promise<SearchResult> {
+    async search(query: string): Promise<SearchResult> {
 
         const split : string[] = processText(query);
-        const books = await this.mongoClient.db(this.db).collection(this.collections[0]).find({userEmail: userEmail}).toArray();
+        const books = await this.mongoClient.db(this.db).collection(this.collections[0]).find().toArray();
 
         let searchItemResult : SearchItem[] = []
 

@@ -2,8 +2,6 @@ import express, {Application, Request, Response} from 'express';
 import {MongoClient} from "mongodb";
 import {ISearchService} from "./Interfaces/ISearchService";
 import {MongoTrieSearchService} from "./Services/Search/MongoTrieSearchService";
-import {TrieSearchService} from "./Services/Search/TrieSearchService";
-import {workerData} from "worker_threads";
 const cors = require('cors')
 
 const app: Application = express();
@@ -22,7 +20,7 @@ app.get('/search', async (req: Request, res: Response) => {
     await client.connect();
     console.log(req.query.query + "  success")
     const query = req.query.query as string
-    const result = await mongoService.search(query, "")
+    const result = await mongoService.search(query)
 
     res.json(result)
 })
@@ -32,7 +30,7 @@ app.post('/add', async (req: Request, res: Response) => {
     await client.connect();
     const title = req.body.title;
     const content = req.body.content;
-    await mongoService.addDocument(title, content, "")
+    await mongoService.addDocument(title, content)
     console.log("Finished posting!")
 })
 
