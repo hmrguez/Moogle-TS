@@ -8,17 +8,26 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
   providedIn: 'root'
 })
 export class SearchResultService {
-  private apiUrl: string = 'http://localhost:5000/search';
-  public query: string = 'boilerplate';
+  private searchUrl: string = 'http://localhost:5000/search';
+  private addDocUrl: string = 'http://localhost:5000/add'
   constructor(private http: HttpClient) { }
 
-  getResult(): Observable<SearchResult>{
-    const queryUrl = this.apiUrl + "?query=" + this.query;
+  getSingleResult(query: string){
+    const queryUrl = this.searchUrl + "?query=" + query;
     return this.http.get<SearchResult>(queryUrl);
   }
 
-  getSingleResult(query: string){
-    const queryUrl = this.apiUrl + "?query=" + query;
-    return this.http.get<SearchResult>(queryUrl);
+  addElementToDb(title: string, content: string){
+    // const bodyData = new FormData();
+    // bodyData.append('title', title)
+    // bodyData.append('content', content)
+
+    const bodyData = {
+      title: title,
+      content: content
+    }
+
+    const temp = this.http.post(this.addDocUrl, bodyData);
+    temp.subscribe(x=> console.log(x))
   }
 }

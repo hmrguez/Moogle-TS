@@ -11,13 +11,4 @@ export class InputQueryComponent implements OnInit{
   @ViewChild(ResultComponent) otherComponent? : ResultComponent;
   ngOnInit(): void {
   }
-
-  constructor(private searchResultService: SearchResultService) {}
-
-  getValue(value: string, resultComp: ResultComponent)
-  {
-    this.searchResultService.query = value;
-    // resultComp.result = this.searchResultService.getResult()
-    // console.log(resultComp.result)
-  }
 }
